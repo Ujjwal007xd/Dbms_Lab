@@ -1,0 +1,28 @@
+CREATE TABLE Employee (
+    Empid INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Dept VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Accounts (
+    Empid INT PRIMARY KEY,
+    Salary DECIMAL(10,2) CHECK (Salary > 0),
+    FOREIGN KEY (Empid) REFERENCES Employee(Empid) ON DELETE CASCADE
+);
+
+INSERT INTO Employee (Empid, Name, Dept) VALUES
+(1, 'John Doe', 'HR'),
+(2, 'Jane Smith', 'IT'),
+(3, 'Alice Johnson', 'Finance'),
+(4, 'Bob Brown', 'Marketing');
+
+INSERT INTO Accounts (Empid, Salary) VALUES
+(1, 8000),
+(2, 12000),
+(3, 15000),
+(4, 9500);
+
+SELECT E.Name, A.Salary 
+FROM Employee E 
+JOIN Accounts A ON E.Empid = A.Empid 
+WHERE A.Salary > 10000;
