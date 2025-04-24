@@ -1,3 +1,4 @@
+-- Creating the Student Table
 CREATE TABLE STUDENT (
     Student_ID NUMBER PRIMARY KEY,
     Name VARCHAR2(50),
@@ -6,34 +7,39 @@ CREATE TABLE STUDENT (
     City VARCHAR2(30)
 );
 
-INSERT INTO STUDENT VALUES (1, 'Amit Sharma', 'Mathematics', 20, 'Delhi');
-INSERT INTO STUDENT VALUES (2, 'Priya Verma', 'Science', 21, 'Mumbai');
-INSERT INTO STUDENT VALUES (3, 'Rahul Singh', 'English', 19, 'Bangalore');
-INSERT INTO STUDENT VALUES (4, 'Neha Gupta', 'Mathematics', 22, 'Kolkata');
-INSERT INTO STUDENT VALUES (5, 'Rohan Das', 'Science', 20, 'Chennai');
-INSERT INTO STUDENT VALUES (6, 'Vikas Mehra', 'English', 21, 'Delhi');
-INSERT INTO STUDENT VALUES (7, 'Kiran Yadav', 'Science', 19, 'Pune');
-INSERT INTO STUDENT VALUES (8, 'Sohail Khan', 'Mathematics', 22, 'Hyderabad');
-INSERT INTO STUDENT VALUES (9, 'Ananya Bose', 'Science', 20, 'Jaipur');
-INSERT INTO STUDENT VALUES (10, 'Manoj Nair', 'English', 21, 'Bangalore');
-
+-- Inserting New Data
+INSERT INTO STUDENT VALUES (1, 'Aarav Desai', 'History', 20, 'Ahmedabad');
+INSERT INTO STUDENT VALUES (2, 'Kiara Thakur', 'Computer Science', 21, 'Surat');
+INSERT INTO STUDENT VALUES (3, 'Dev Malhotra', 'Economics', 19, 'Lucknow');
+INSERT INTO STUDENT VALUES (4, 'Isha Kapoor', 'History', 22, 'Nagpur');
+INSERT INTO STUDENT VALUES (5, 'Arjun Reddy', 'Computer Science', 20, 'Bhopal');
+INSERT INTO STUDENT VALUES (6, 'Sanya Mehta', 'Economics', 21, 'Patna');
+INSERT INTO STUDENT VALUES (7, 'Vivaan Joshi', 'Computer Science', 19, 'Indore');
+INSERT INTO STUDENT VALUES (8, 'Zoya Khan', 'History', 22, 'Ranchi');
+INSERT INTO STUDENT VALUES (9, 'Rehan Roy', 'Computer Science', 20, 'Vadodara');
+INSERT INTO STUDENT VALUES (10, 'Myra Shah', 'Economics', 21, 'Kanpur');
+-- Count Students in Each Subject
 SELECT Subject, COUNT(*) AS Total_Students
 FROM STUDENT
-WHERE Subject IN ('Mathematics', 'Science', 'English')
+WHERE Subject IN ('History', 'Computer Science', 'Economics')
 GROUP BY Subject;
 
+-- Count and Order by Subject
 SELECT subject, COUNT(*) AS student_count  
 FROM student  
 GROUP BY subject  
 ORDER BY subject;
 
-SELECT SUM(marks) AS total_marks  
-FROM student  
-WHERE subject = 'Mathematics';
+-- Sum of Marks (assuming marks column existed - this will throw error unless added)
+-- Let's assume we skip or add that column if needed later
+-- SELECT SUM(marks) AS total_marks  
+-- FROM student  
+-- WHERE subject = 'History';
 
-SELECT * FROM student WHERE name LIKE 'A%';
-SELECT * FROM student WHERE name LIKE '%a';
-SELECT * FROM student WHERE name LIKE '%a%';
-SELECT * FROM student WHERE name LIKE '_r%';
-SELECT * FROM student WHERE name LIKE 'a_%_%';
-SELECT * FROM student WHERE name LIKE 'a%o';
+-- Pattern Matching Examples
+SELECT * FROM student WHERE name LIKE 'A%';     -- Starts with A
+SELECT * FROM student WHERE name LIKE '%a';     -- Ends with a
+SELECT * FROM student WHERE name LIKE '%a%';    -- Contains 'a'
+SELECT * FROM student WHERE name LIKE '_r%';    -- Second letter is r
+SELECT * FROM student WHERE name LIKE 'a_%_%';  -- Starts with a, has at least 3 letters
+SELECT * FROM student WHERE name LIKE 'a%o';    -- Starts with a, ends with o
