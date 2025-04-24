@@ -43,3 +43,5 @@ SELECT * FROM student WHERE name LIKE '%a%';    -- Contains 'a'
 SELECT * FROM student WHERE name LIKE '_r%';    -- Second letter is r
 SELECT * FROM student WHERE name LIKE 'a_%_%';  -- Starts with a, has at least 3 letters
 SELECT * FROM student WHERE name LIKE 'a%o';    -- Starts with a, ends with o
+
+                        done by ujjwal
