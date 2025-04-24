@@ -1,3 +1,4 @@
+-- 1. Create Employee Table
 CREATE TABLE Employee (
     empid NUMBER PRIMARY KEY,
     empname VARCHAR2(50),
@@ -6,22 +7,28 @@ CREATE TABLE Employee (
     emp_dept NUMBER
 );
 
+-- 2. Insert New Employee Data
 INSERT INTO Employee (empid, empname, salary, comp_name, emp_dept) 
 VALUES 
-    (105, 'Alice Johnson', 48000, 'Jones', 10),
-    (106, 'Michael Lee', 62000, 'ABC Corp', 20),
-    (107, 'Sophia Wilson', 53000, 'XYZ Ltd', 30),
-    (108, 'David Miller', 75000, 'Jones', 40),
-    (109, 'Olivia White', 69000, 'ABC Corp', 10);
+    (201, 'Riya Mehta', 48000, 'TechNova', 10),
+    (202, 'Aarav Sharma', 62000, 'CodeCraft', 20),
+    (203, 'Meera Iyer', 53000, 'CloudX', 30),
+    (204, 'Kunal Kapoor', 75000, 'TechNova', 40),
+    (205, 'Zoya Ali', 69000, 'CodeCraft', 10);
 
+-- 3. Query 1: Employees earning more than any employee from TechNova
 SELECT empname, empid 
 FROM Employee 
-WHERE salary > (SELECT salary FROM Employee WHERE comp_name = 'Jones');
+WHERE salary > (SELECT salary FROM Employee WHERE comp_name = 'TechNova');
 
+-- 4. Query 2: Employees earning less than **anyone** from department 10
 SELECT empname, empid 
 FROM Employee 
 WHERE salary < ANY (SELECT salary FROM Employee WHERE emp_dept = 10);
 
+-- 5. Query 3: Employees earning less than the **average salary** in dept 10
 SELECT empname, empid 
 FROM Employee 
-WHERE salary < (SELECT AVG(salary) FROM Employee WHERE emp_dept = 10);
+WHERE salary < (SELECT AVG(salary) FROM Employee WHERE emp_dept = 10):
+
+                                done by ujjwal
