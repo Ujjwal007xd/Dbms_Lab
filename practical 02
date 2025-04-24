@@ -1,30 +1,35 @@
+-- Create Table
 CREATE TABLE Student (
     Roll_No INT PRIMARY KEY,
     Name VARCHAR(50),
     Dept VARCHAR(50)
 );
-DESC Student;
-INSERT INTO Student (Roll_No, Name, Dept) VALUES
-(1, 'Alice', 'Computer Science'),
-(2, 'Bob', 'Mechanical'),
-(3, 'Charlie', 'Electrical'),
-(4, 'David', 'Civil'),
-(5, 'Eve', 'Computer Science'),
-(6, 'Frank', 'Mechanical'),
-(7, 'Grace', 'Electrical'),
-(8, 'Hank', 'Civil'),
-(9, 'Ivy', 'Computer Science'),
-(10, 'Jack', 'Mechanical'),
-(11, 'Kate', 'Electrical'),
-(12, 'Leo', 'Civil'),
-(13, 'Mia', 'Computer Science'),
-(14, 'Nick', 'Mechanical'),
-(15, 'Olivia', 'Electrical'),
-(16, 'Paul', 'Civil'),
-(17, 'Quinn', 'Computer Science'),
-(18, 'Ryan', 'Mechanical'),
-(19, 'Sophia', 'Electrical'),
-(20, 'Tom', 'Civil');
 
-SELECT * FROM Student;
+-- Insert New Data with Changed Names and Shuffled Branches
+INSERT INTO Student (Roll_No, Name, Dept) VALUES
+(1, 'Aarav', 'Civil'),
+(2, 'Bhavya', 'Computer Science'),
+(3, 'Chirag', 'Mechanical'),
+(4, 'Diya', 'Electrical'),
+(5, 'Eshan', 'Civil'),
+(6, 'Fatima', 'Computer Science'),
+(7, 'Gaurav', 'Mechanical'),
+(8, 'Harsh', 'Electrical'),
+(9, 'Ishita', 'Civil'),
+(10, 'Jay', 'Computer Science'),
+(11, 'Kritika', 'Mechanical'),
+(12, 'Laksh', 'Electrical'),
+(13, 'Meera', 'Civil'),
+(14, 'Naman', 'Computer Science'),
+(15, 'Ojas', 'Mechanical'),
+(16, 'Pari', 'Electrical'),
+(17, 'Rohan', 'Civil'),
+(18, 'Sana', 'Computer Science'),
+(19, 'Tanmay', 'Mechanical'),
+(20, 'Urvi', 'Electrical');
+
+-- Delete Specific Rows Based on Roll_No
 DELETE FROM Student WHERE Roll_No IN (1, 5, 10, 15, 20);
+
+-- Select Remaining Students
+SELECT * FROM Student;
