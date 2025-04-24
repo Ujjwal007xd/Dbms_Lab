@@ -1,65 +1,59 @@
---Implement the grouping Clouse Group  by ,Order by & having 
---create table customer (Cid , C name ,Country)
---1. Select count (Cid ) ,Country from customer , Group By country  ;
---2. Select (Cid ) , cOUNTRY FROM CUSTOMER group by having count (Cid) > 2
---3. Select cID ,Cname From Customer Order By Cid ASC;
---4. Select cID ,Cname From Customer Order By Cid desc;
---5. Select cID ,Cname From Customer Order By Cid Asc, Cname desc;
---6. Create View Cust.View as Select(*) From Customer;
---7. Drop view cust.VIew;
-
---Customer/Country 
---3 From India
---4 From Japan
---2 Frm USA
---2 From UK
-
-
---SQL
-
+-- 1. Create the Customer Table
 CREATE TABLE customer (
     Cid NUMBER,
     Cname VARCHAR2(50),
     Country VARCHAR2(50)
 );
 
+-- 2. Insert Sample Data into Customer Table
 -- India (3 customers)
-INSERT INTO customer (Cid, Cname, Country) VALUES (101, 'Aman', 'India');
-INSERT INTO customer (Cid, Cname, Country) VALUES (102, 'Ravi', 'India');
-INSERT INTO customer (Cid, Cname, Country) VALUES (103, 'Priya', 'India');
+INSERT INTO customer VALUES (101, 'Aman', 'India');
+INSERT INTO customer VALUES (102, 'Ravi', 'India');
+INSERT INTO customer VALUES (103, 'Priya', 'India');
 
 -- Japan (4 customers)
-INSERT INTO customer (Cid, Cname, Country) VALUES (201, 'Sora', 'Japan');
-INSERT INTO customer (Cid, Cname, Country) VALUES (202, 'Hana', 'Japan');
-INSERT INTO customer (Cid, Cname, Country) VALUES (203, 'Takeshi', 'Japan');
-INSERT INTO customer (Cid, Cname, Country) VALUES (204, 'Yuki', 'Japan');
+INSERT INTO customer VALUES (201, 'Sora', 'Japan');
+INSERT INTO customer VALUES (202, 'Hana', 'Japan');
+INSERT INTO customer VALUES (203, 'Takeshi', 'Japan');
+INSERT INTO customer VALUES (204, 'Yuki', 'Japan');
 
 -- USA (2 customers)
-INSERT INTO customer (Cid, Cname, Country) VALUES (301, 'John', 'USA');
-INSERT INTO customer (Cid, Cname, Country) VALUES (302, 'Emily', 'USA');
+INSERT INTO customer VALUES (301, 'John', 'USA');
+INSERT INTO customer VALUES (302, 'Emily', 'USA');
 
 -- UK (2 customers)
-INSERT INTO customer (Cid, Cname, Country) VALUES (401, 'Oliver', 'UK');
-INSERT INTO customer (Cid, Cname, Country) VALUES (402, 'Emma', 'UK');
+INSERT INTO customer VALUES (401, 'Oliver', 'UK');
+INSERT INTO customer VALUES (402, 'Emma', 'UK');
 
+-- 3. Group By Country (Count of customers in each country)
 SELECT COUNT(Cid) AS total_customers, Country 
 FROM customer 
 GROUP BY Country;
 
+-- 4. Group By + Having (Only countries with more than 2 customers)
 SELECT Country, COUNT(Cid) AS total_customers 
 FROM customer 
 GROUP BY Country 
 HAVING COUNT(Cid) > 2;
 
+-- 5. Order By Cid ASC
 SELECT Cid, Cname 
 FROM customer 
 ORDER BY Cid ASC;
 
+-- 6. Order By Cid DESC
 SELECT Cid, Cname 
 FROM customer 
 ORDER BY Cid DESC;
-  
+
+-- 7. Order By Cid ASC, Cname DESC
+SELECT Cid, Cname 
+FROM customer 
+ORDER BY Cid ASC, Cname DESC;
+
+-- 8. Create a View of All Customers
 CREATE VIEW cust_view AS 
 SELECT * FROM customer;
 
+-- 9. Drop the View
 DROP VIEW cust_view;
