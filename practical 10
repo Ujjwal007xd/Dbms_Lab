@@ -69,3 +69,5 @@ END;
 
 -- 5. Display the updated table
 SELECT * FROM it_items;
+
+                            done by ujjwal
