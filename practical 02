@@ -33,3 +33,5 @@ DELETE FROM Student WHERE Roll_No IN (1, 5, 10, 15, 20);
 
 -- Select Remaining Students
 SELECT * FROM Student;
+
+                    done by ujjwal
