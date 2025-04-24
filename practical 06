@@ -1,27 +1,32 @@
+-- Create Employee Table
 CREATE TABLE Employee (
     Empid INT PRIMARY KEY,
     Name VARCHAR(100),
     Dept VARCHAR(50) NOT NULL
 );
 
+-- Create Accounts Table
 CREATE TABLE Accounts (
     Empid INT PRIMARY KEY,
     Salary DECIMAL(10,2) CHECK (Salary > 0),
     FOREIGN KEY (Empid) REFERENCES Employee(Empid) ON DELETE CASCADE
 );
 
+-- Insert New Employee Data
 INSERT INTO Employee (Empid, Name, Dept) VALUES
-(1, 'John Doe', 'HR'),
-(2, 'Jane Smith', 'IT'),
-(3, 'Alice Johnson', 'Finance'),
-(4, 'Bob Brown', 'Marketing');
+(1, 'Aarav Kapoor', 'Operations'),
+(2, 'Meera Sethi', 'Engineering'),
+(3, 'Rohan Malik', 'Design'),
+(4, 'Tanya Batra', 'Sales');
 
+-- Insert New Salary Data
 INSERT INTO Accounts (Empid, Salary) VALUES
-(1, 8000),
-(2, 12000),
-(3, 15000),
-(4, 9500);
+(1, 18000),
+(2, 22000),
+(3, 9500),
+(4, 13000);
 
+-- Select Employees earning more than 10,000
 SELECT E.Name, A.Salary 
 FROM Employee E 
 JOIN Accounts A ON E.Empid = A.Empid 
