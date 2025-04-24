@@ -1,18 +1,21 @@
 Q--Program for general procedure selected records price is incremented by 500 ,Executing the procedure created and displaying the updated table .
-
+-- Enable output
 SET SERVEROUTPUT ON;
 
+-- 1. Create the table
 CREATE TABLE it_items (
     item_id NUMBER PRIMARY KEY,
     item_name VARCHAR2(50),
     actual_price NUMBER
 );
 
-INSERT INTO it_items VALUES (101, 'Router', 2500);
-INSERT INTO it_items VALUES (102, 'Switch', NULL);
-INSERT INTO it_items VALUES (103, 'Access Point', 1800);
+-- 2. Insert sample data with NEW item names
+INSERT INTO it_items VALUES (201, 'WiFi Extender', 2500);
+INSERT INTO it_items VALUES (202, 'Firewall Appliance', NULL);  -- NULL price test case
+INSERT INTO it_items VALUES (203, 'Smart Hub', 1800);
 COMMIT;
 
+-- 3. Create the procedure
 CREATE OR REPLACE PROCEDURE increment_price (
     identity_number IN NUMBER,
     total_number IN NUMBER
@@ -20,16 +23,23 @@ CREATE OR REPLACE PROCEDURE increment_price (
     price NUMBER;
     null_price EXCEPTION;
 BEGIN
-    SELECT actual_price INTO price FROM it_items WHERE item_id = identity_number;
+    -- Try to fetch the actual price
+    SELECT actual_price INTO price 
+    FROM it_items 
+    WHERE item_id = identity_number;
 
+    -- Check if price is null
     IF price IS NULL THEN
         RAISE null_price;
     ELSE
+        -- Update the price
         UPDATE it_items
         SET actual_price = actual_price + total_number
         WHERE item_id = identity_number;
+        DBMS_OUTPUT.PUT_LINE('Price updated successfully.');
     END IF;
 
+-- Exception Handling
 EXCEPTION
     WHEN null_price THEN
         DBMS_OUTPUT.PUT_LINE('Price is null.');
@@ -38,19 +48,24 @@ EXCEPTION
 END;
 /
 
+-- 4. Call the procedure (test cases)
+-- Valid update
 BEGIN
-    increment_price(101, 500);
+    increment_price(201, 500);
 END;
 /
 
+-- Null price case
 BEGIN
-    increment_price(102, 500);
+    increment_price(202, 500);
 END;
 /
 
+-- Invalid item_id (no such item)
 BEGIN
     increment_price(999, 500);
 END;
 /
 
+-- 5. Display the updated table
 SELECT * FROM it_items;
